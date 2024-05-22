@@ -408,5 +408,9 @@ zipp==3.18.1
 zstandard==0.22.0
     # via flask-compress
 
+psycopg2==2.9.9
+sqlalchemy-redshift
+sqlalchemy-bigquery
+
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
