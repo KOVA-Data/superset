@@ -314,12 +314,12 @@ const RightMenu = ({
     item.disable ? (
       <Menu.Item key={item.name} css={styledDisabled}>
         <Tooltip placement="top" title={tooltipText}>
-          {item.label}
+          {t(item.label)}
         </Tooltip>
       </Menu.Item>
     ) : (
       <Menu.Item key={item.name} css={styledChildMenu}>
-        {item.url ? <a href={item.url}> {item.label} </a> : item.label}
+        {item.url ? <a href={item.url}> {t(item.label)} </a> : t(item.label)}
       </Menu.Item>
     );
 
@@ -452,7 +452,7 @@ const RightMenu = ({
                           data-test={`menu-item-${menu.label}`}
                           className={`fa ${menu.icon}`}
                         />{' '}
-                        {menu.label}
+                        {t(menu.label)}
                       </Link>
                     ) : (
                       <a href={menu.url}>
@@ -460,7 +460,7 @@ const RightMenu = ({
                           data-test={`menu-item-${menu.label}`}
                           className={`fa ${menu.icon}`}
                         />{' '}
-                        {menu.label}
+                        {t(menu.label)}
                       </a>
                     )}
                   </Menu.Item>
@@ -474,16 +474,16 @@ const RightMenu = ({
           icon={<Icons.TriangleDown iconSize="xl" />}
         >
           {settings?.map?.((section, index) => [
-            <Menu.ItemGroup key={`${section.label}`} title={section.label}>
+            <Menu.ItemGroup key={`${section.label}`} title={t(section.label)}>
               {section?.childs?.map?.(child => {
                 if (typeof child !== 'string') {
                   const menuItemDisplay = RightMenuItemIconExtension ? (
                     <StyledMenuItemWithIcon>
-                      {child.label}
+                      {t(child.label)}
                       <RightMenuItemIconExtension menuChild={child} />
                     </StyledMenuItemWithIcon>
                   ) : (
-                    child.label
+                    <>{t(child.label)}</>
                   );
                   return (
                     <Menu.Item key={`${child.label}`}>

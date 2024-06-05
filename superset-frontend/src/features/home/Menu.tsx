@@ -17,7 +17,7 @@
  * under the License.
  */
 import React, { useState, useEffect } from 'react';
-import { styled, css, useTheme, SupersetTheme } from '@superset-ui/core';
+import { t, styled, css, useTheme, SupersetTheme } from '@superset-ui/core';
 import { debounce } from 'lodash';
 import { Global } from '@emotion/react';
 import { getUrlParam } from 'src/utils/urlUtils';
@@ -250,7 +250,7 @@ export function Menu({
       return (
         <DropdownMenu.Item key={label} role="presentation">
           <NavLink role="button" to={url} activeClassName="is-active">
-            {label}
+            {t(label)}
           </NavLink>
         </DropdownMenu.Item>
       );
@@ -258,14 +258,14 @@ export function Menu({
     if (url) {
       return (
         <DropdownMenu.Item key={label}>
-          <a href={url}>{label}</a>
+          <a href={url}>{t(label)}</a>
         </DropdownMenu.Item>
       );
     }
     return (
       <SubMenu
         key={index}
-        title={label}
+        title={t(label)}
         icon={showMenu === 'inline' ? <></> : <Icons.TriangleDown />}
       >
         {childs?.map((child: MenuObjectChildProps | string, index1: number) => {
@@ -281,10 +281,10 @@ export function Menu({
                     exact
                     activeClassName="is-active"
                   >
-                    {child.label}
+                    {t(child.label)}
                   </NavLink>
                 ) : (
-                  <a href={child.url}>{child.label}</a>
+                  <a href={child.url}>{t(child.label)}</a>
                 )}
               </DropdownMenu.Item>
             );
@@ -321,7 +321,7 @@ export function Menu({
           </Tooltip>
           {brand.text && (
             <div className="navbar-brand-text">
-              <span>{brand.text}</span>
+              <span>{t(brand.text)}</span>
             </div>
           )}
           <DropdownMenu
