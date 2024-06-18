@@ -22,11 +22,14 @@ export type SelectOptionType = {
 };
 
 export type FrameType =
+  | 'Simple'
   | 'Common'
   | 'Calendar'
   | 'Custom'
   | 'Advanced'
   | 'No filter';
+
+export type SimpleRangeKey = 'sinceDatetime' | 'untilDatetime';
 
 export type DateTimeGrainType =
   | 'second'
@@ -49,6 +52,16 @@ export type CustomRangeKey =
   | 'untilGrainValue'
   | 'anchorMode'
   | 'anchorValue';
+
+export type SimpleRangeType = {
+  sinceDatetime: string;
+  untilDatetime: string;
+};
+
+export type SimpleRangeDecodeType = {
+  simpleRange: SimpleRangeType;
+  matchedFlag: boolean;
+};
 
 export type DateTimeModeType = 'specific' | 'relative' | 'now' | 'today';
 

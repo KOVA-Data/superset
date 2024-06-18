@@ -47,10 +47,11 @@ import {
   useDefaultTimeFilter,
 } from './utils';
 import {
-  CommonFrame,
-  CalendarFrame,
-  CustomFrame,
-  AdvancedFrame,
+  // CommonFrame,
+  // CalendarFrame,
+  // CustomFrame,
+  // AdvancedFrame,
+  SimpleFrame,
   DateLabel,
 } from './components';
 
@@ -290,17 +291,20 @@ export default function DateFilterLabel(props: DateFilterControlProps) {
         onChange={onChangeFrame}
       />
       {frame !== 'No filter' && <Divider />}
-      {frame === 'Common' && (
-        <CommonFrame value={timeRangeValue} onChange={setTimeRangeValue} />
-      )}
-      {frame === 'Calendar' && (
-        <CalendarFrame value={timeRangeValue} onChange={setTimeRangeValue} />
-      )}
-      {frame === 'Advanced' && (
-        <AdvancedFrame value={timeRangeValue} onChange={setTimeRangeValue} />
-      )}
-      {frame === 'Custom' && (
-        <CustomFrame value={timeRangeValue} onChange={setTimeRangeValue} />
+      {/* {frame === 'Common' && ( */}
+      {/*  <CommonFrame value={timeRangeValue} onChange={setTimeRangeValue} /> */}
+      {/* )} */}
+      {/* {frame === 'Calendar' && ( */}
+      {/*  <CalendarFrame value={timeRangeValue} onChange={setTimeRangeValue} /> */}
+      {/* )} */}
+      {/* {frame === 'Advanced' && ( */}
+      {/*  <AdvancedFrame value={timeRangeValue} onChange={setTimeRangeValue} /> */}
+      {/* )} */}
+      {/* {frame === 'Custom' && ( */}
+      {/*  <CustomFrame value={timeRangeValue} onChange={setTimeRangeValue} /> */}
+      {/* )} */}
+      {frame === 'Simple' && (
+        <SimpleFrame value={timeRangeValue} onChange={setTimeRangeValue} />
       )}
       {frame === 'No filter' && <div data-test={DateFilterTestKey.NoFilter} />}
       <Divider />

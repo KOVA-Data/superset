@@ -119,6 +119,7 @@ const NUMERICAL_RANGE_REGEX = /^numerical range$/i;
 const TIME_RANGE_REGEX = /^time range$/i;
 const TIME_COLUMN_REGEX = /^time column$/i;
 const TIME_GRAIN_REGEX = /^time grain$/i;
+const CALENDAR_RANGE_REGEX = /^calendar range$/i;
 const FILTER_SETTINGS_REGEX = /^filter settings$/i;
 const DEFAULT_VALUE_REGEX = /^filter has default value$/i;
 const MULTIPLE_REGEX = /^can select multiple values$/i;
@@ -210,6 +211,21 @@ test('renders a numerical range filter type', async () => {
   expect(queryCheckbox(INVERSE_SELECTION_REGEX)).not.toBeInTheDocument();
   expect(queryCheckbox(SEARCH_ALL_REGEX)).not.toBeInTheDocument();
   expect(queryCheckbox(SORT_REGEX)).not.toBeInTheDocument();
+});
+
+test('renders a calendar range filter type', async () => {
+  defaultRender();
+
+  userEvent.click(screen.getByText(VALUE_REGEX));
+
+  await waitFor(() => userEvent.click(screen.getByText(CALENDAR_RANGE_REGEX)));
+
+  expect(screen.getByText(FILTER_TYPE_REGEX)).toBeInTheDocument();
+  expect(screen.getByText(FILTER_NAME_REGEX)).toBeInTheDocument();
+  expect(screen.queryByText(DATASET_REGEX)).not.toBeInTheDocument();
+  expect(screen.queryByText(COLUMN_REGEX)).not.toBeInTheDocument();
+
+  expect(getCheckbox(DEFAULT_VALUE_REGEX)).not.toBeChecked();
 });
 
 test('renders a time range filter type', async () => {

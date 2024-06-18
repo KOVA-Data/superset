@@ -34,5 +34,6 @@ export const FILTER_SUPPORTED_TYPES = {
     GenericDataType.Numeric,
     GenericDataType.Temporal,
   ],
+  filter_simple: [GenericDataType.Temporal],
   filter_range: [GenericDataType.Numeric],
 };

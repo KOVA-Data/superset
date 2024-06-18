@@ -5548,7 +5548,7 @@ msgid ""
 "returned, ensure any filters are configured properly and the datasource "
 "contains data for the selected time range."
 msgstr ""
-"Không có kết quả nào được trả về cho truy vấn này. Nếu bạn mong đợi có kết "
+"Không có kết quả nào được trả về. Nếu bạn mong đợi có kết "
 "quả được trả về, hãy đảm bảo các bộ lọc được cấu hình đúng và nguồn dữ liệu "
 "chứa dữ liệu cho phạm vi thời gian được chọn."
 
@@ -12666,7 +12666,7 @@ msgstr "nhấp vào đây"
 #: superset-frontend/src/components/Chart/ChartRenderer.jsx:296
 #: superset-frontend/src/explore/components/DataTablesPane/components/useResultsPane.tsx:134
 msgid "No results were returned for this query"
-msgstr "Không có kết quả nào được trả về cho truy vấn này"
+msgstr "Không có kết quả nào được trả về"
 
 #: superset-frontend/src/components/Chart/ChartRenderer.jsx:299
 msgid ""
@@ -17115,6 +17115,14 @@ msgstr "để thêm các cột tính toán"
 #: superset-frontend/src/explore/components/controls/MetricControl/AdhocMetricEditPopover/index.jsx:439
 msgid "Simple"
 msgstr "Đơn giản"
+
+#: superset-frontend/src/explore/components/controls/DateFilterControl/DateFilterLabel.tsx
+msgid "Configure time range"
+msgstr "Điều chỉnh thời gian"
+
+#: superset-frontend/src/explore/components/controls/DateFilterControl/utils/constants.ts
+msgid "By date"
+msgstr "Theo ngày"
 
 #: superset-frontend/src/explore/components/controls/DndColumnSelectControl/ColumnSelectPopover.tsx:385
 msgid "Mark a column as temporal in \"Edit datasource\" modal"
