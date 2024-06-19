@@ -22,6 +22,7 @@ import {
   COMMON_RANGE_VALUES_SET,
   CALENDAR_RANGE_VALUES_SET,
   customTimeRangeDecode,
+  simpleTimeRangeDecode,
 } from '.';
 import { FrameType } from '../types';
 
@@ -34,6 +35,9 @@ export const guessFrame = (timeRange: string): FrameType => {
   }
   if (timeRange === NO_TIME_RANGE) {
     return 'No filter';
+  }
+  if (simpleTimeRangeDecode(timeRange).matchedFlag) {
+    return 'Simple';
   }
   if (customTimeRangeDecode(timeRange).matchedFlag) {
     return 'Custom';

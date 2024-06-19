@@ -28,10 +28,11 @@ import {
 } from 'src/explore/components/controls/DateFilterControl/types';
 
 export const FRAME_OPTIONS: SelectOptionType[] = [
-  { value: 'Common', label: t('Last') },
-  { value: 'Calendar', label: t('Previous') },
-  { value: 'Custom', label: t('Custom') },
-  { value: 'Advanced', label: t('Advanced') },
+  { value: 'Simple', label: t('By date') },
+  // { value: 'Common', label: t('Last') },
+  // { value: 'Calendar', label: t('Previous') },
+  // { value: 'Custom', label: t('Custom') },
+  // { value: 'Advanced', label: t('Advanced') },
   { value: 'No filter', label: t('No filter') },
 ];
 
@@ -108,12 +109,16 @@ export const CALENDAR_RANGE_SET: Set<CalendarRangeType> = new Set([
 ]);
 
 export const MOMENT_FORMAT = 'YYYY-MM-DD[T]HH:mm:ss';
+export const START_OF_DAY_FORMAT = 'YYYY-MM-DD[T]00:00:00';
+export const END_OF_DAY_FORMAT = 'YYYY-MM-DD[T]23:59:59';
 export const SEVEN_DAYS_AGO = moment()
   .utc()
   .startOf('day')
   .subtract(7, 'days')
   .format(MOMENT_FORMAT);
 export const MIDNIGHT = moment().utc().startOf('day').format(MOMENT_FORMAT);
+export const START_OF_DAY = moment().utc().startOf('day').format(MOMENT_FORMAT);
+export const END_OF_DAY = moment().utc().endOf('day').format(MOMENT_FORMAT);
 
 export const LOCALE_MAPPING = {
   en: 'en_US',
