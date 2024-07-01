@@ -29,10 +29,10 @@ import {
 
 export const FRAME_OPTIONS: SelectOptionType[] = [
   { value: 'Simple', label: t('By date') },
-  // { value: 'Common', label: t('Last') },
-  // { value: 'Calendar', label: t('Previous') },
-  // { value: 'Custom', label: t('Custom') },
-  // { value: 'Advanced', label: t('Advanced') },
+  { value: 'Common', label: t('Last') },
+  { value: 'Calendar', label: t('Previous') },
+  { value: 'Custom', label: t('Custom') },
+  { value: 'Advanced', label: t('Advanced') },
   { value: 'No filter', label: t('No filter') },
 ];
 
@@ -88,7 +88,8 @@ export const SINCE_MODE_OPTIONS: SelectOptionType[] = [
   { value: 'specific', label: t('Specific Date/Time') },
   { value: 'relative', label: t('Relative Date/Time') },
   { value: 'now', label: t('Now') },
-  { value: 'today', label: t('Midnight') },
+  { value: 'today', label: t('Start of Day') },
+  { value: 'today 23:59:59', label: t('End of Day') },
 ];
 
 export const UNTIL_MODE_OPTIONS: SelectOptionType[] =

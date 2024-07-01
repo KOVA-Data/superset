@@ -45,7 +45,7 @@ import {
 const iso8601 = String.raw`\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?(?:(?:[+-]\d\d:\d\d)|Z)?`;
 const iso8601StartDate = String.raw`\d{4}-\d\d-\d\dT00:00:00(?:\.0+)?(?:(?:[+-]00:00)|Z)?`;
 const iso8601EndDate = String.raw`\d{4}-\d\d-\d\dT23:59:59(?:\.9+)?(?:(?:[+-]00:00)|Z)?`;
-const datetimeConstant = String.raw`(?:TODAY|NOW)`;
+const datetimeConstant = String.raw`(?:TODAY|NOW|TODAY 23:59:59)`;
 const grainValue = String.raw`[+-]?[1-9][0-9]*`;
 const grain = String.raw`YEAR|QUARTER|MONTH|WEEK|DAY|HOUR|MINUTE|SECOND`;
 const CUSTOM_RANGE_EXPRESSION = RegExp(
@@ -57,10 +57,10 @@ export const ISO8601_AND_CONSTANT = RegExp(
   'i',
 );
 export const ISO8601_ZERO_TIME_CONSTANT = RegExp(
-  String.raw`^${iso8601StartDate}$|^${iso8601EndDate}$`,
+  String.raw`^${iso8601StartDate}$|^${iso8601EndDate}$|^${datetimeConstant}$`,
   'i',
 );
-const DATETIME_CONSTANT = ['now', 'today'];
+const DATETIME_CONSTANT = ['now', 'today', 'today 23:59:59'];
 const defaultSimpleRange: SimpleRangeType = {
   sinceDatetime: START_OF_DAY,
   untilDatetime: END_OF_DAY,
@@ -77,7 +77,7 @@ const defaultCustomRange: CustomRangeType = {
   anchorMode: 'now',
   anchorValue: 'now',
 };
-const SPECIFIC_MODE = ['specific', 'today', 'now'];
+const SPECIFIC_MODE = ['specific', 'today', 'now', 'today 23:59:59'];
 
 export const dttmToMoment = (dttm: string): Moment => {
   if (dttm === 'now') {
@@ -85,6 +85,9 @@ export const dttmToMoment = (dttm: string): Moment => {
   }
   if (dttm === 'today') {
     return moment().utc().startOf('day');
+  }
+  if (dttm === 'today 23:59:59') {
+    return moment().utc().endOf('day');
   }
   return moment(dttm);
 };

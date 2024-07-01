@@ -63,7 +63,12 @@ export type SimpleRangeDecodeType = {
   matchedFlag: boolean;
 };
 
-export type DateTimeModeType = 'specific' | 'relative' | 'now' | 'today';
+export type DateTimeModeType =
+  | 'specific'
+  | 'relative'
+  | 'now'
+  | 'today'
+  | 'today 23:59:59';
 
 export type CustomRangeType = {
   sinceMode: DateTimeModeType;

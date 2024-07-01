@@ -32,7 +32,9 @@ import {
 import { FrameComponentProps } from 'src/explore/components/controls/DateFilterControl/types';
 
 export function SimpleFrame(props: FrameComponentProps) {
-  const { simpleRange, matchedFlag } = simpleTimeRangeDecode(props.value);
+  const { simpleRange, matchedFlag } = simpleTimeRangeDecode(
+    '"today" : "today 23:59:59"',
+  );
   if (!matchedFlag) {
     props.onChange(simpleTimeRangeEncode(simpleRange));
   }
