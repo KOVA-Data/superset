@@ -111,6 +111,28 @@ class SupersetAppInitializer:  # pylint: disable=too-many-public-methods
 
         celery_app.Task = AppContextTask
 
+    def monkey_patch(self) -> None:
+        @expose("/<string:locale>")
+        def patch_flask_locale_index(self, locale):
+            from flask import abort, redirect, session, request
+            from flask_babel import refresh
+            from flask_appbuilder.urltools import Stack
+            if locale not in self.appbuilder.bm.languages:
+                abort(404, description="Locale not supported.")
+
+            if request.referrer is not None:
+                page_history = Stack(session.get("page_history", []))
+                page_history.push(request.referrer)
+                session["page_history"] = page_history.to_json()
+
+            session["locale"] = locale
+            refresh()
+            self.update_redirect()
+            return redirect(self.get_redirect())
+
+        from flask_appbuilder.babel.views import LocaleView
+        LocaleView.index = patch_flask_locale_index
+
     def init_views(self) -> None:
         #
         # We're doing local imports, as several of them import
@@ -525,6 +547,7 @@ class SupersetAppInitializer:  # pylint: disable=too-many-public-methods
                  See [4565] in UPDATING.md"""
             )
 
+        self.monkey_patch()
         appbuilder.indexview = SupersetIndexView
         appbuilder.base_template = "superset/base.html"
         appbuilder.security_manager_class = custom_sm
