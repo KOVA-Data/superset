@@ -17,6 +17,8 @@
  * under the License.
  */
 import moment, { Moment } from 'moment';
+import { CustomRangeType } from 'src/explore/components/controls/DateFilterControl/types';
+import { MOMENT_FORMAT } from './constants';
 import { SEPARATOR } from '@superset-ui/core';
 import {
   CustomRangeDecodeType,
@@ -43,6 +45,10 @@ import {
  * @see: https://www.w3.org/TR/NOTE-datetime
  */
 const iso8601 = String.raw`\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?(?:(?:[+-]\d\d:\d\d)|Z)?`;
+
+const datetimeConstant = String.raw`(?:TODAY|NOW)`;
+
+
 const iso8601StartDate = String.raw`\d{4}-\d\d-\d\dT00:00:00(?:\.0+)?(?:(?:[+-]00:00)|Z)?`;
 const iso8601EndDate = String.raw`\d{4}-\d\d-\d\dT23:59:59(?:\.9+)?(?:(?:[+-]00:00)|Z)?`;
 const datetimeConstant = String.raw`(?:TODAY|NOW|TODAY 23:59:59)`;
@@ -56,6 +62,7 @@ export const ISO8601_AND_CONSTANT = RegExp(
   String.raw`^${iso8601}$|^${datetimeConstant}$`,
   'i',
 );
+
 export const ISO8601_ZERO_TIME_CONSTANT = RegExp(
   String.raw`^${iso8601StartDate}$|^${iso8601EndDate}$|^${datetimeConstant}$`,
   'i',
@@ -79,6 +86,7 @@ const defaultCustomRange: CustomRangeType = {
 };
 const SPECIFIC_MODE = ['specific', 'today', 'now', 'today 23:59:59'];
 
+
 export const dttmToMoment = (dttm: string): Moment => {
   if (dttm === 'now') {
     return moment().utc().startOf('second');
@@ -94,6 +102,7 @@ export const dttmToMoment = (dttm: string): Moment => {
 
 export const dttmToString = (dttm: string): string =>
   dttmToMoment(dttm).format(MOMENT_FORMAT);
+
 
 export const simpleTimeRangeDecode = (
   timeRange: string,

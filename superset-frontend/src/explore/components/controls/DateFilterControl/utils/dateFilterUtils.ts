@@ -16,11 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { NO_TIME_RANGE, JsonObject } from '@superset-ui/core';
+import {
+  NO_TIME_RANGE,
+  JsonObject,
+  customTimeRangeDecode,
+} from '@superset-ui/core';
 import { useSelector } from 'react-redux';
 import {
   COMMON_RANGE_VALUES_SET,
   CALENDAR_RANGE_VALUES_SET,
+  CURRENT_RANGE_VALUES_SET,
   customTimeRangeDecode,
   simpleTimeRangeDecode,
 } from '.';
@@ -32,6 +37,9 @@ export const guessFrame = (timeRange: string): FrameType => {
   }
   if (CALENDAR_RANGE_VALUES_SET.has(timeRange)) {
     return 'Calendar';
+  }
+  if (CURRENT_RANGE_VALUES_SET.has(timeRange)) {
+    return 'Current';
   }
   if (timeRange === NO_TIME_RANGE) {
     return 'No filter';
